@@ -3,21 +3,33 @@ import docker
 client = docker.from_env()
 
 def get_containers():
-    containers = []
-    for c in client.containers.list(all=True):
-        containers.append({
+    containers = client.containers.list(all=True)
+    return [
+        {
+            "id": c.short_id,
             "name": c.name,
-            "status": c.status,
-            "ports": c.attrs.get("NetworkSettings", {}).get("Ports", {})
-        })
-    return containers
+            "status": c.status
+        } for c in containers
+    ]
+
+def get_container_by_id(container_id):
+    try:
+        container = client.containers.get(container_id)
+        return {
+            "id": container.short_id,
+            "name": container.name,
+            "status": container.status,
+            "image": container.image.tags,
+            "created": container.attrs["Created"]
+        }
+    except Exception as e:
+        return {"error": str(e)}
 
 def get_system_info():
     info = client.info()
     return {
-        "containers_running": info.get("ContainersRunning"),
-        "containers_stopped": info.get("ContainersStopped"),
-        "images": info.get("Images"),
-        "server_version": info.get("ServerVersion"),
+        "cpu_count": info["NCPU"],
+        "mem_total": round(info["MemTotal"] / 1024**3, 2),
+        "docker_version": info["ServerVersion"]
     }
 

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о системе</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Системная информация</h1>
+        <table>
+            <tr><th>Количество CPU</th><td>{{ stats.cpu_count }} ядра</td></tr>
+            <tr><th>Объем памяти</th><td>{{ stats.mem_total }} ГБ</td></tr>
+            <tr><th>Версия Docker</th><td>{{ stats.docker_version }}</td></tr>
+        </table>
+        <div style="margin-top:20px;">
+            <button onclick="window.location.href='/'">← Назад</button>
+        </div>
+    </div>
+</body>
+</html>
+
