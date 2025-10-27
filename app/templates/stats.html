@@ -7,16 +7,21 @@
 </head>
 <body>
     <div class="container">
-        <h1>Системная информация</h1>
+        <h1>container информация</h1>
         <table>
-            <tr><th>Количество CPU</th><td>{{ stats.cpu_count }} ядра</td></tr>
-            <tr><th>Объем памяти</th><td>{{ stats.mem_total }} ГБ</td></tr>
-            <tr><th>Версия Docker</th><td>{{ stats.docker_version }}</td></tr>
+            <tr><th>id</th><td>{{ stats.id }}</td></tr>
+            <tr><th>name</th><td>{{ stats.name }}</td></tr>
+            <tr><th>status</th><td>{{ stats.status }}</td></tr>
+            <tr><th>image</th><td>{{ stats.image }}</td></tr>
+            <tr><th>created</th><td>{{ stats.created }}</td></tr>
         </table>
         <div style="margin-top:20px;">
             <button onclick="window.location.href='/'">← Назад</button>
+            <button onclick="window.location.reload()"> Restart </button>
         </div>
     </div>
 </body>
 </html>
 
+<!-- {'id': '30fbd7f9d331', 'name': 'hardcore_banzai', 'status': 'exited', 
+ 'image': ['mcr.microsoft.com/dotnet/sdk:9.0'], 'created': '2025-10-27T04:13:19.600229229Z'} -->

@@ -11,13 +11,18 @@ def index():
 def containers():
     return jsonify(get_containers())
 
-@app.route('/containers/<id>')
-def container_detail(id):
-    return jsonify(get_container_by_id(id))
+@app.route('/stats/<string:id>')
+def stats(id):
+    # return jsonify(get_container_by_id(id))
+    container_stats = get_container_by_id(id)
+    print(container_stats)
+    return render_template('stats.html', stats = container_stats)
 
-@app.route('/stats')
-def stats():
-    return jsonify(get_system_info())
+@app.route('/stats/')
+def stat():
+    sysinfo = get_system_info()
+    print(sysinfo)
+    return render_template('statsd.html' , stats = sysinfo)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
