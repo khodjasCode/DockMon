@@ -1,5 +1,5 @@
 function viewStats(containerId) {
-    window.location.href = `/stats?container_id=${containerId}`;
+    window.location.href = `/stats/${containerId}`;
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
