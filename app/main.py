@@ -1,8 +1,18 @@
 from flask import Flask, jsonify, render_template
 from docker_utils import get_containers, get_container_by_id, get_system_info
-import docker 
+from dotenv import load_dotenv
+import os
+import docker
+ 
+load_dotenv()
+
+SECRET_KEY = os.getenv("SECRET_ENV", "default_key")
+PORT = int(os.getenv("PORT", 5000))
+
 app = Flask(__name__)
 client = docker.from_env()
+app.config["SECRET_KEY"] = SECRET_KEY
+
 @app.route('/')
 def index():
     return render_template('index.html' , containers = get_containers())
@@ -69,6 +79,10 @@ def stat():
     sysinfo = get_system_info()
     print(sysinfo)
     return render_template('statsd.html' , stats = sysinfo)
+    
+@app.route('/health')
+def health():
+    return {"status": "ok"}, 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
