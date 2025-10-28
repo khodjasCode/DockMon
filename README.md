@@ -1,11 +1,11 @@
-# 🚢 DockMon — Docker Monitoring Dashboard
+# DockMon — Docker Monitoring Dashboard
 
 **DockMon** is a lightweight **Flask + Nginx** dashboard for monitoring and managing Docker containers.  
-It shows live stats (CPU, RAM, uptime) and lets you control containers directly from the web UI: start, stop, remove;
+It shows live stats (CPU, RAM, uptime) and lets you control containers directly from the web UI: `start`, `stop`, `remove`;
 
 ---
 
-## ⚙️ Features
+## Features
 
 - View all containers with their ports and statuses  
 - Live CPU/RAM/uptime stats  
