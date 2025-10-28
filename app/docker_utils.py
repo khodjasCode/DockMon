@@ -8,7 +8,8 @@ def get_containers():
         {
             "id": c.short_id,
             "name": c.name,
-            "status": c.status
+            "status": c.status,
+            "ports": c.ports,
         } for c in containers
     ]
 

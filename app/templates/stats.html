@@ -1,26 +1,84 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <title>Информация о системе</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
     <div class="container">
         <h1>container информация</h1>
         <table>
-            <tr><th>id</th><td>{{ stats.id }}</td></tr>
-            <tr><th>name</th><td>{{ stats.name }}</td></tr>
-            <tr><th>status</th><td>{{ stats.status }}</td></tr>
-            <tr><th>image</th><td>{{ stats.image }}</td></tr>
-            <tr><th>created</th><td>{{ stats.created }}</td></tr>
+            <tr>
+                <th>id</th>
+                <td id="id">{{ stats.id }}</td>
+            </tr>
+            <tr>
+                <th>name</th>
+                <td id="name">{{ stats.name }}</td>
+            </tr>
+            <tr>
+                <th>status</th>
+                <td id="status">{{ stats.status }}</td>
+            </tr>
+            <tr>
+                <th>image</th>
+                <td id="image">{{ stats.image }}</td>
+            </tr>
+            <tr>
+                <th>created</th>
+                <td id="created">{{ stats.created }}</td>
+            </tr>
         </table>
         <div style="margin-top:20px;">
             <button onclick="window.location.href='/'">← Назад</button>
             <button onclick="window.location.reload()"> Restart </button>
+
+            <button style="margin-left: 70%;" onclick="startContainer()">Start</button>
+            <button onclick="stopContainer()">Stop</button>
+            <button onclick="removeContainer()">Remove</button>
         </div>
     </div>
+
+
+    <div id="message"></div>
+
+    <script>
+        const containerId = "{{ container_id }}";
+
+        function startContainer() {
+            fetch('/container/' + containerId + '/start', { method: 'POST' })
+                .then(r => r.json())
+                .then(data => {
+                    document.getElementById('message').textContent = data.message;
+                });
+        }
+
+        function stopContainer() {
+            fetch('/container/' + containerId + '/stop', { method: 'POST' })
+                .then(r => r.json())
+                .then(data => {
+                    document.getElementById('message').textContent = data.message;
+                });
+        }
+
+        function removeContainer() {
+            if (confirm('Are you sure?')) {
+                fetch('/container/' + containerId + '/remove', { method: 'POST' })
+                    .then(r => r.json())
+                    .then(data => {
+                        document.getElementById('message').textContent = data.message;
+                        // Redirect to home after remove
+                        setTimeout(() => window.location.href = '/', 2000);
+                    });
+            }
+        }
+        setInterval(() => location.reload(), 5000);
+    </script>
 </body>
+
 </html>
 
 <!-- {'id': '30fbd7f9d331', 'name': 'hardcore_banzai', 'status': 'exited', 
