@@ -1,0 +1,10 @@
+Metadata-Version: 2.1
+Name: dockmon
+Version: 1.0.0
+Summary: A Docker container monitoring application
+Author: Asrorkhodja, Akobir
+License: MIT
+Requires-Python: >=3.7
+License-File: LICENSE
+Requires-Dist: Flask>=2.0.0
+Requires-Dist: docker>=5.0.0

@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, render_template
-from docker_utils import get_containers, get_container_by_id, get_system_info
+from .docker_utils import get_containers, get_container_by_id, get_system_info
 from dotenv import load_dotenv
 import os
 import docker
@@ -84,6 +84,11 @@ def stat():
 def health():
     return {"status": "ok"}, 200
 
+
+def main():
+    print("DockMon is starting!")
+    app.run(host="0.0.0.0", port=5000)
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    main()
 

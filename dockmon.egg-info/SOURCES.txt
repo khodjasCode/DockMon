@@ -1,0 +1,9 @@
+LICENSE
+README.md
+setup.py
+dockmon.egg-info/PKG-INFO
+dockmon.egg-info/SOURCES.txt
+dockmon.egg-info/dependency_links.txt
+dockmon.egg-info/entry_points.txt
+dockmon.egg-info/requires.txt
+dockmon.egg-info/top_level.txt
