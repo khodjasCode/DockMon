@@ -1,4 +1,4 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: dockmon
 Version: 1.0.0
 Summary: A Docker container monitoring application
@@ -8,3 +8,9 @@ Requires-Python: >=3.7
 License-File: LICENSE
 Requires-Dist: Flask>=2.0.0
 Requires-Dist: docker>=5.0.0
+Dynamic: author
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary

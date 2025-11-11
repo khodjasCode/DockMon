@@ -92,3 +92,6 @@ def main():
 if __name__ == '__main__':
     main()
 
+# Package initializer for DockMon app
+__all__ = ["main", "docker_utils"]
+
