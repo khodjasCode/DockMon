@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, render_template
 from .docker_utils import get_containers, get_container_by_id, get_system_info
+from prometheus_flask_exporter import PrometheusMetrics
 from dotenv import load_dotenv
 import os
 import docker
@@ -10,6 +11,7 @@ SECRET_KEY = os.getenv("SECRET_ENV", "default_key")
 PORT = int(os.getenv("PORT", 5000))
 
 app = Flask(__name__)
+metrics = PrometheusMetrics(app)
 client = docker.from_env()
 app.config["SECRET_KEY"] = SECRET_KEY
 

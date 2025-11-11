@@ -37,8 +37,10 @@ services:
     container_name: prometheus
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
     ports:
       - "9090:9090"
+    restart: always
   nodeexporter:
     image: prom/node-exporter:latest
     container_name: nodeexporter
@@ -53,3 +55,12 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=admin
     ports:
       - "3000:3000"
+    depends_on:
+      - prometheus
+    volumes:
+      - grafana_data:/var/lib/grafana
+    restart: always
+
+volumes:
+  prometheus_data:
+  grafana_data:
